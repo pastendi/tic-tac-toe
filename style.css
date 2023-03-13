@@ -13,6 +13,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
 }
 .select-box {
   background: white;
@@ -20,7 +21,11 @@ body {
   border-radius: 5px;
   max-width: 350px;
   width: 100%;
-  /* display: none; */
+}
+.select-box.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
 }
 .select-box header {
   font-size: 25px;
@@ -63,7 +68,14 @@ body {
 
 /* player board */
 .play-board {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+.play-board.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
 }
 .play-board .details {
   background: #fff;
@@ -80,9 +92,19 @@ body {
   cursor: default;
   text-align: center;
   z-index: 4;
+  transition: all 0.3s ease;
 }
 .details span:first-child {
   color: #fff;
+}
+.players.active span:first-child {
+  color: #56baed;
+}
+.players.active span:nth-child(2) {
+  color: white;
+}
+.players.active .slider {
+  left: 50%;
 }
 .play-board .details .players {
   display: flex;
@@ -99,6 +121,7 @@ body {
   background: #56baed;
   border-radius: 5px;
   z-index: 2;
+  transition: all 0.3s ease;
 }
 .play-board .play-area {
   margin-top: 20px;
