@@ -16,7 +16,7 @@ window.onload = () => {
   selectO.onclick = () => {
     selectBox.classList.add('hide')
     playBoard.classList.add('show')
-    playBoard.setAttribute('class', 'players active player')
+    players.setAttribute('class', 'players active player')
   }
 }
 let playerX = 'fas fa-times'
