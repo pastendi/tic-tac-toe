@@ -4,6 +4,9 @@ const selectBox = document.querySelector('.select-box'),
 const playBoard = document.querySelector('.play-board')
 const allBox = document.querySelectorAll('section span')
 const players = document.querySelector('.players')
+const resultBox = document.querySelector('.result-box')
+const wonText = resultBox.querySelector('.won-text')
+const replayBtn = resultBox.querySelector('.btn')
 
 window.onload = () => {
   for (let i = 0; i < allBox.length; i++) {
@@ -99,7 +102,32 @@ function selectWinner() {
     checkClass(1, 5, 9, playerSign) ||
     checkClass(3, 5, 7, playerSign)
   ) {
-    console.log(playerSign + 'wins')
     runBot = false
+    wonText.innerHTML = `Player
+    <p>${playerSign}</p>
+    won the game!`
+    setTimeout(() => {
+      playBoard.classList.remove('show')
+      resultBox.classList.add('show')
+    }, 700)
+  } else {
+    let allBoxFilled = true
+    for (let i = 1; i <= 9; i++) {
+      if (getClass(i) == '') {
+        allBoxFilled = false
+      }
+    }
+    if (allBoxFilled) {
+      runBot = false
+      wonText.innerHTML = `Match draw`
+      setTimeout(() => {
+        playBoard.classList.remove('show')
+        resultBox.classList.add('show')
+      }, 700)
+    }
   }
+}
+
+replayBtn.onclick = () => {
+  window.location.reload()
 }
